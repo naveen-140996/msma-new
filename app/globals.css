@@ -50,3 +50,35 @@ body {
   font-weight: 700;
   font-style: normal;
 }
+
+
+.card-cutout {
+  -webkit-mask:
+    radial-gradient(
+      circle 34px at calc(100% - 28px) calc(100% - 28px),
+      transparent 98%,
+      black 100%
+    );
+  mask:
+    radial-gradient(
+      circle 34px at calc(100% - 28px) calc(100% - 28px),
+      transparent 98%,
+      black 100%
+    );
+}
+
+
+.card-cutout-large {
+  -webkit-mask:
+    radial-gradient(
+      circle 48px at calc(100% - 36px) calc(100% - 36px),
+      transparent 98%,
+      black 100%
+    );
+  mask:
+    radial-gradient(
+      circle 48px at calc(100% - 36px) calc(100% - 36px),
+      transparent 98%,
+      black 100%
+    );
+}

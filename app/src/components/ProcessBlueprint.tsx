@@ -68,7 +68,7 @@ export default function ProcessBlueprint() {
 
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <p className="text-sm tracking-widest text-[#2ECCE9] font-semibold mb-3">
+          <p className="text-sm tracking-widest text-[#677C87] font-semibold mb-3">
             // OUR PROCESS
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#050E12]">

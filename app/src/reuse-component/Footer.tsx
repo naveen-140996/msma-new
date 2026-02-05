@@ -75,11 +75,11 @@ export default function Footer() {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="border-t border-[#FFFFFF1A]">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="border-t border-[#FFFFFF1A] bg-[#285968]">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 ">
 
           {/* Left */}
-          <p className="text-center md:text-left text-[#677C87] text-[14px]">
+          <p className="text-center md:text-left text-[#6E9FAE] text-[14px]">
             © {new Date().getFullYear()} MSMA Enterprises, All Rights Reserved
           </p>
 

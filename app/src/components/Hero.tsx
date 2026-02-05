@@ -44,7 +44,7 @@ const imageVariant: Variants = {
 export default function Hero() {
   return (
     <section className="w-full bg-white">
-      <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
+      <div className="max-w-7xl mx-auto px-6 pt-20 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
 
           {/* LEFT CONTENT */}
@@ -78,7 +78,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-8 inline-flex items-center justify-center
-                         px-8 py-4 rounded-full bg-[#29d3f3]
+                         px-8 py-4 rounded-full bg-[#2ECCE9]
                          text-black font-semibold
                          hover:bg-[#1fc3e3] transition"
             >
