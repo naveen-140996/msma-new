@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import HeroImage from "@/public/assets/images/hero.jpg";
+import Herogif from "@/public/assets/images/web-development.gif"
 
 /* ================= VARIANTS ================= */
 const container: Variants = {
@@ -94,7 +95,7 @@ export default function Hero() {
                        md:h-[420px] lg:h-[480px]"
           >
             <Image
-              src={HeroImage}
+              src={Herogif}
               alt="Hero Illustration"
               fill
               className="object-contain"
