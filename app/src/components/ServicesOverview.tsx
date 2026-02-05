@@ -4,6 +4,12 @@ import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
+/* ===== Swiper ===== */
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
 /* ================= TYPES ================= */
 interface ServiceItem {
   id: number;
@@ -45,9 +51,7 @@ const services: ServiceItem[] = [
 const containerVariants: Variants = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.2 },
   },
 };
 
@@ -60,12 +64,53 @@ const cardVariants: Variants = {
   },
 };
 
+/* ================= CARD ================= */
+function ServiceCard({ service }: { service: ServiceItem }) {
+  return (
+    <motion.div
+      variants={cardVariants}
+      className="relative group rounded-3xl
+                 border border-white/10 hover:border-[#2ECCE9]
+                 transition duration-500
+                 p-4 bg-[#050E12]"
+    >
+      <div className="relative overflow-hidden rounded-2xl h-[420px]">
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            className="object-cover"
+            loading="lazy"
+          />
+        </motion.div>
+
+        <div className="absolute inset-0 bg-gradient-to-t
+                        from-black/90 via-black/40 to-transparent z-10" />
+
+        <div className="absolute bottom-0 left-0 right-0 z-20 p-6">
+          <h3 className="text-xl font-semibold text-white mb-3">
+            {service.title}
+          </h3>
+          <p className="text-sm text-gray-300 leading-relaxed">
+            {service.description}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ================= MAIN ================= */
 export default function ServicesOverview() {
   return (
     <section className="w-full py-24 bg-[#050E12]">
       <div className="max-w-7xl mx-auto px-6">
-
-        {/* SECTION HEADER */}
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,73 +126,46 @@ export default function ServicesOverview() {
           </h2>
         </motion.div>
 
-        {/* SERVICES GRID */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
-        >
-          {services.map((service) => (
-            <motion.div
-              key={service.id}
-              variants={cardVariants}
-              className="relative group rounded-3xl
-                         border border-white/10 hover:border-[#2ECCE9]
-                         transition duration-500
-                         p-4 bg-[#050E12]"
-            >
-              {/* IMAGE CARD */}
-              <div className="relative overflow-hidden rounded-2xl h-[420px]">
+        {/* ===== DESKTOP GRID ===== */}
+        <div className="hidden lg:block">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          >
+            {services.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </motion.div>
+        </div>
 
-                {/* IMAGE */}
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </motion.div>
-
-                {/* GRADIENT OVERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t 
-                                from-black/90 via-black/40 to-transparent z-10" />
-
-                {/* CONTENT ON IMAGE */}
-                <div className="absolute bottom-0 left-0 right-0 z-20 p-6">
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* GLOW EFFECT */}
-              <motion.div
-                className="absolute inset-0 rounded-3xl pointer-events-none"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.4 }}
-                animate={{
-                  boxShadow: [
-                    "0 0 0 rgba(46,204,233,0)",
-                    "0 0 35px rgba(46,204,233,0.6)",
-                    "0 0 0 rgba(46,204,233,0)",
-                  ],
-                }}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* ===== MOBILE / TABLET AUTO SLIDER ===== */}
+        <div className="lg:hidden">
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={20}
+            slidesPerView={1.1}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 1.3 },
+              768: { slidesPerView: 2 },
+            }}
+            className="pb-12"
+          >
+            {services.map((service) => (
+              <SwiperSlide key={service.id}>
+                <ServiceCard service={service} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </section>
   );

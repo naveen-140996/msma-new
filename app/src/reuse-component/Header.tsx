@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Logo from "@/public/assets/logo/msma-logo.jpg";
+import Logo from "@/public/assets/logo/msma-logo-part-1.png";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
@@ -70,9 +70,10 @@ export default function Header() {
           <Image
             src={Logo} // replace with your logo
             alt="Logo"
-            width={70}
-            height={40}
-            priority
+            width={100}
+            height={100}
+           loading="lazy"
+           className="w-full"
           />
         </Link>
 

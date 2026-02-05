@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Instagram, Youtube, Linkedin } from "lucide-react";
-import Logo from "@/public/assets/logo/msma-logo.jpg";
+import Logo from "@/public/assets/logo/msma-logo-part-1.png";
 
 export default function Footer() {
   return (
@@ -97,10 +97,8 @@ export default function Footer() {
               Cookie Settings
             </Link>
           </div>
-
         </div>
       </div>
-
     </footer>
   );
 }
